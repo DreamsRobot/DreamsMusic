@@ -1,7 +1,7 @@
 pyrogram==2.0.105
+tgcrypto==1.2.4
 pytgcalls==0.0.2
 tgcalls==0.0.2
-tgcrypto==1.2.4
 aiohttp
 pydub
 python-dotenv
