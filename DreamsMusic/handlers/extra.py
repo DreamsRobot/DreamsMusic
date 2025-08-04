@@ -1,8 +1,10 @@
 from pyrogram import Client, filters
+from pyrogram.types import Message
 
-@Client.on_message(filters.command(["ping", "help"]))
-async def extra_handler(client, message):
-    if message.text == "/ping":
-        await message.reply("🏓 Pong!")
-    else:
-        await message.reply("/play /pause /resume /stop /skip /auth /unauth /stats /queue /song /loop /speed /seek /broadcast etc.")
+@Client.on_message(filters.command("ping"))
+async def ping(client, message: Message):
+    await message.reply("🏓 Pong!")
+
+@Client.on_message(filters.command("help"))
+async def help_command(client, message: Message):
+    await message.reply("Use /play <song name> to play music.\nUse /pause, /resume, /skip, /stop to control.")
