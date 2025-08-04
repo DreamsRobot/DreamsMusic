@@ -1,34 +1,36 @@
 from pyrogram import Client
 from pytgcalls import PyTgCalls
-from pytgcalls.types import Update
-from pytgcalls.types.input_stream import InputStream, AudioPiped
-from DreamsMusic import app
-from DreamsMusic.utils.logger import LOGGER
+from pytgcalls.types.stream import StreamAudioEnded
+from pytgcalls.exceptions import AlreadyJoinedError
+
+from DreamsMusic.config import API_ID, API_HASH, SESSION_NAME
+from DreamsMusic.utils.logger import log
+from DreamsMusic.core.player import player
+
+app = Client(SESSION_NAME, api_id=API_ID, api_hash=API_HASH)
+pytgcalls = PyTgCalls(app)
 
 
-class DreamsPlayer:
-    def __init__(self, client: Client):
-        self.client = client
-        self.call = PyTgCalls(client)
+@pytgcalls.on_stream_end()
+async def on_stream_end(_, update: StreamAudioEnded):
+    chat_id = update.chat_id
+    log(f"Stream ended in {chat_id}")
+    await player.on_stream_end(chat_id)
 
-        @self.call.on_stream_end()
-        async def on_stream_end(_, update: Update):
-            LOGGER.info(f"Stream ended in chat: {update.chat_id}")
-            # Add logic to handle end of stream
 
-    async def start(self):
-        await self.call.start()
-        LOGGER.info("DreamsPlayer call started")
+async def join_vc(chat_id):
+    try:
+        await pytgcalls.join_group_call(chat_id, player.get_input_stream(chat_id))
+        log(f"Joined voice chat in {chat_id}")
+    except AlreadyJoinedError:
+        pass
+    except Exception as e:
+        log(f"Error joining VC in {chat_id}: {e}")
 
-    async def join_and_play(self, chat_id: int, audio_url: str):
-        await self.call.join_group_call(
-            chat_id,
-            InputStream(
-                AudioPiped(audio_url)
-            ),
-        )
-        LOGGER.info(f"Joined group call in {chat_id} with {audio_url}")
 
-    async def leave(self, chat_id: int):
-        await self.call.leave_group_call(chat_id)
-        LOGGER.info(f"Left group call in {chat_id}")
+async def leave_vc(chat_id):
+    try:
+        await pytgcalls.leave_group_call(chat_id)
+        log(f"Left voice chat in {chat_id}")
+    except Exception as e:
+        log(f"Error leaving VC in {chat_id}: {e}")
