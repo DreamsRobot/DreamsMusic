@@ -1,7 +1,6 @@
-pyrogram==2.0.105
-tgcrypto==1.2.4
-pytgcalls==1.2.3
+pyrogram
+tgcrypto
+pytgcalls==2.1.0
+tgcalls==2.0.0
+youtube_dl
 aiohttp
-requests
-pymongo
-python-dotenv
