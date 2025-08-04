@@ -3,7 +3,6 @@ pytgcalls==0.0.2
 tgcalls==0.0.2
 tgcrypto==1.2.4
 aiohttp
-youtube_dl
-yt-dlp
 pydub
 python-dotenv
+yt-dlp
