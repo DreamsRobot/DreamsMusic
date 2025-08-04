@@ -6,4 +6,3 @@ pydub==0.25.1
 yt-dlp==2024.05.27
 python-dotenv==1.0.1
 requests==2.31.0
-typing-extensions==4.12.1
