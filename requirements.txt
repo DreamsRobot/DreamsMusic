@@ -1,9 +1,21 @@
+# Core requirements
 pyrogram==2.0.106
 tgcrypto==1.2.5
+
+# Voice call support
 pytgcalls==0.0.2
 tgcalls==0.0.2
+
+# YouTube / Audio handling
 youtube_dl==2021.12.17
-aiohttp==3.8.6
 pytube
-python-dotenv
+aiohttp==3.8.6
+
+# MongoDB
 pymongo[srv]==4.6.3
+
+# Environment
+python-dotenv
+
+# Optional but useful
+loguru
