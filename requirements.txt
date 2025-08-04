@@ -1,8 +1,7 @@
-pyrogram==2.0.105
-tgcrypto==1.2.4
-pytgcalls==0.0.2
-tgcalls==0.0.2
-aiohttp
-pydub
-python-dotenv
-yt-dlp
+pyrogram==2.0.106
+tgcrypto==1.2.5
+pytgcalls==1.2.5
+aiohttp==3.9.5
+pydub==0.25.1
+yt-dlp==2024.05.27
+python-dotenv==1.0.1
