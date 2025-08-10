@@ -7,7 +7,7 @@ httpx[http2]==0.25.2
 motor
 Pillow>=10.3.0
 psutil
-git+https://github.com/pytgcalls/pytgcalls.git@0.9.7
+py-tgcalls==1.2.7
 pytgcrypto
 kurigram
 python-dotenv
