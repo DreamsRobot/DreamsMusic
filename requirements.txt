@@ -5,7 +5,7 @@ ffmpeg-python
 gitpython
 httpx[http2]==0.25.2
 motor
-pillow==9.5.0
+Pillow>=10.3.0
 psutil
 py-tgcalls==0.9.7
 pytgcrypto
